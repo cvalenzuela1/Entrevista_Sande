@@ -1,0 +1,70 @@
+<div class="page">
+  <header class="page-header">
+    <div class="header-left">
+      <h1>Contactos</h1>
+      @if (session) {
+        <span class="user-badge">
+          {{ session.nombre }} {{ session.apellido }} &mdash; Perfil {{ session.perfil }}
+        </span>
+      }
+    </div>
+    <div class="header-actions">
+      @if (canCreate) {
+        <a routerLink="/contactos/nuevo" class="btn btn-primary">+ Nuevo</a>
+      }
+      <button class="btn btn-secondary" (click)="logout()">Salir</button>
+    </div>
+  </header>
+
+  @if (loading) {
+    <p class="status-msg">Cargando...</p>
+  } @else if (errorMsg) {
+    <div class="alert-error">{{ errorMsg }}</div>
+  } @else {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>RUT</th>
+            <th>Nombre</th>
+            @if (canEdit || canDelete) {
+              <th class="col-actions">Acciones</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (contacto of contactos; track contacto.idContacto) {
+            <tr>
+              <td>{{ contacto.idContacto }}</td>
+              <td>{{ contacto.rutContacto }}</td>
+              <td>{{ contacto.nombreContacto }}</td>
+              @if (canEdit || canDelete) {
+                <td>
+                  <div class="cell-actions">
+                    @if (canEdit) {
+                      <button class="btn btn-sm btn-edit" (click)="editar(contacto.idContacto)">
+                        Editar
+                      </button>
+                    }
+                    @if (canDelete) {
+                      <button class="btn btn-sm btn-danger" (click)="eliminar(contacto.idContacto)">
+                        Eliminar
+                      </button>
+                    }
+                  </div>
+                </td>
+              }
+            </tr>
+          } @empty {
+            <tr>
+              <td [colSpan]="canEdit || canDelete ? 4 : 3" class="empty-row">
+                No hay contactos registrados
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

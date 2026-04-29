@@ -1,0 +1,143 @@
+Prueba técnica Angular 18 : “Login, Contactos, Token local y Perfiles”
+
+Credenciales
+•	Usuario: admin / clave 123 → perfil 1
+•	Usuario: crea / clave 123 → perfil 2
+•	Usuario: consulta / clave 123 → perfil 3
+________________________________________
+API (entregada)
+Login
+POST
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/Login
+Body:
+{ "usuario": "admin", "clave": "123" }
+Response:
+[
+  {
+    "idUsuario": "77",
+    "nombre": "usuario",
+    "apellido": "admin",
+    "perfil": "1"
+  }
+]
+
+
+
+________________________________________
+Listar contactos
+GET
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/ListarContactos/{idUsuario}
+Ej:
+.../ListarContactos/77
+________________________________________
+Obtener datos de un contacto (para editar)
+GET
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/ListaContacto/{idUsuario}/{idContacto}
+Ej:
+.../ListarContactos/77/85139
+________________________________________
+Crear contacto
+POST
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/CreaContacto
+Body:
+{
+  "idUsuario": "string",
+  "idContacto": "0",
+  "rutContacto": " string ",
+  "nombreContacto": " string ",
+  "abreviacion": " string ",
+  "telefono": "string",
+  "email": " string "
+}
+________________________________________
+Modificar contacto
+POST
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/UpdateContacto
+Body:
+{
+  "idUsuario": " string ",
+  "idContacto": " string ",
+  "nombreContacto": " string ",
+  "abreviacion": " string ",
+  "telefono": " string ",
+  "email": " string "
+}
+________________________________________
+Eliminar contacto
+POST
+https://sandeonline.cl:2082/taskfocus/maestros/api/Test/DeleteContacto
+Body:
+{ "idUsuario": " string ", "idContacto": " string " }
+________________________________________
+
+
+
+
+
+
+
+Reglas de negocio (OBLIGATORIO)
+Token (generado en Angular)
+•	La API no entrega token.
+•	Luego de login exitoso, Angular debe generar un token y guardarlo en localStorage.
+•	El token se usa para:
+1.	AuthGuard 
+2.	HttpInterceptor (agrega header Authorization Bearer)
+________________________________________
+Perfil (según login)
+El campo perfil controla permisos:
+•	Perfil 1: Crear / Modificar / Eliminar
+•	Perfil 2: Crear / Modificar
+•	Perfil 3: Solo lectura
+Se debe implementar:
+•	Ocultar/mostrar botones en la lista según perfil:
+o	Nuevo: perfiles 1 y 2
+o	Editar: perfiles 1 y 2
+o	Eliminar: solo perfil 1
+________________________________________
+Pantallas y rutas mínimas
+Rutas
+•	/login (pública)
+•	/contactos (protegida)
+•	/contactos/nuevo (protegida + perfil 1/2)
+•	/contactos/:id/editar (protegida + perfil 1/2)
+Pantalla Login
+•	Formulario reactive forms (usuario/clave requeridos)
+•	Llama Login API
+•	Si OK:
+o	toma el primer elemento del arreglo
+o	genera token local
+o	guarda sesión
+o	navega a /contactos
+Pantalla Listado Contactos
+•	Llama ListarContactos/{idUsuario} usando idUsuario desde sesión
+•	Muestra tabla simple (idContacto,rutContacto,nombreContacto)
+•	Botones según perfil:
+o	Nuevo / Editar / Eliminar
+Pantalla Formulario (Nuevo / Editar)
+•	Reactive forms
+•	Nuevo:
+o	envía idContacto = "0"
+o	llama CreaContacto
+•	Editar:
+o	carga detalle con GET ListarContactos/{idUsuario}/{idContacto}
+o	llama UpdateContacto
+
+
+
+
+
+________________________________________
+Requisitos técnicos (OBLIGATORIOS)
+1.	Angular 18 con routing
+2.	AuthGuard
+3.	HttpInterceptor con Authorization: Bearer <token>
+4.	Sesión en localStorage (mínimo token + idUsuario + perfil)
+5.	Servicios separados (AuthService, ContactosService)
+6.	Herencia (extends): al menos una clase base utilizada realmente
+________________________________________
+Entregables
+•	Zip del proyecto en Google drive de carácter público o Repositorio Git
+•	README con:
+o	npm install
+o	ng serve

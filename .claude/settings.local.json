@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx -p @angular/cli@18 ng new entrevista-contactos --routing=true --style=scss --standalone=true --skip-git=true --package-manager=npm)",
+      "Bash(npx ng *)"
+    ]
+  }
+}
