@@ -38,7 +38,8 @@ export class LoginComponent {
 
     this.authService.login(usuario, clave).subscribe({
       next: (res) => {
-        if (res?.[0]?.idUsuario) {
+        debugger;
+        if (res?.[0]?.idUsuario && res?.[0]?.idUsuario != "0") {
           this.router.navigate(['/contactos']);
         } else {
           this.errorMsg = 'Usuario o contraseña incorrectos';
