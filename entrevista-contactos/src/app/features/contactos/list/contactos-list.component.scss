@@ -1,113 +1,14 @@
-.page {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px 24px;
+.navbar-custom {
+  background: linear-gradient(135deg, #1a56db 0%, #0e3eb5 100%);
+  min-height: 60px;
 }
 
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  h1 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #111827;
-  }
-}
-
-.user-badge {
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.header-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.status-msg {
-  color: #6b7280;
-  padding: 20px 0;
-}
-
-.alert-error {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-  padding: 12px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.table-wrapper {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-
-  thead tr {
-    background-color: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  th {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6b7280;
-  }
-
-  .col-actions {
-    text-align: right;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #f3f4f6;
-    transition: background-color 0.15s;
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    &:hover {
-      background-color: #f9fafb;
-    }
-  }
-
-  td {
-    padding: 13px 16px;
-    font-size: 14px;
-    color: #374151;
-  }
-}
-
-.cell-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.empty-row {
-  text-align: center;
-  color: #9ca3af;
-  padding: 40px !important;
+.badge-perfil {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

@@ -1,95 +1,46 @@
-.login-wrapper {
+.login-bg {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
+  background: linear-gradient(135deg, #1a56db 0%, #0e3eb5 100%);
+  padding: 24px;
 }
 
 .login-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  padding: 40px 36px;
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
+}
 
-  h1 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 28px;
-    text-align: center;
+.login-icon {
+  font-size: 3.5rem;
+  color: #1a56db;
+  line-height: 1;
+}
+
+.form-control-lg {
+  border-radius: 10px;
+  border-color: #dee2e6;
+
+  &:focus {
+    border-color: #1a56db;
+    box-shadow: 0 0 0 0.2rem rgba(26, 86, 219, 0.15);
   }
 }
 
-.form-group {
-  margin-bottom: 18px;
-
-  label {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 6px;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-
-    &:focus {
-      border-color: #1d4ed8;
-      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-    }
-
-    &.field-error {
-      border-color: #dc2626;
-    }
-  }
-}
-
-.error-text {
-  display: block;
-  color: #dc2626;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.alert-error {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  margin-bottom: 16px;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 11px;
-  background-color: #1d4ed8;
-  color: #fff;
+.btn-primary {
+  background: linear-gradient(135deg, #1a56db, #0e3eb5);
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 8px;
+  border-radius: 10px;
+  padding: 12px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
 
   &:hover:not(:disabled) {
-    background-color: #1e40af;
+    opacity: 0.9;
   }
 
   &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
+    opacity: 0.7;
   }
 }

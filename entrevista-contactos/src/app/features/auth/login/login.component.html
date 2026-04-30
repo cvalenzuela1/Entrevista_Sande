@@ -1,43 +1,64 @@
-<div class="login-wrapper">
-  <div class="login-card">
-    <h1>Acceso al Sistema</h1>
+<div class="login-bg">
+  <div class="login-card card p-4 p-md-5">
+
+    <div class="text-center mb-4">
+      <div class="login-icon mb-3">
+        <i class="bi bi-person-circle"></i>
+      </div>
+      <h1 class="h4 fw-bold mb-1">Bienvenido</h1>
+      <p class="text-muted small">Ingresa tus credenciales para continuar</p>
+    </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="form-group">
-        <label for="usuario">Usuario</label>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold" for="usuario">
+          <i class="bi bi-person me-1"></i>Usuario
+        </label>
         <input
           id="usuario"
           type="text"
+          class="form-control form-control-lg"
           formControlName="usuario"
-          placeholder="Ingrese su usuario"
-          [class.field-error]="form.get('usuario')?.invalid && form.get('usuario')?.touched"
+          placeholder="Ingresa tu usuario"
+          [class.is-invalid]="form.get('usuario')?.invalid && form.get('usuario')?.touched"
+          autocomplete="username"
         />
-        @if (form.get('usuario')?.hasError('required') && form.get('usuario')?.touched) {
-          <span class="error-text">El usuario es requerido</span>
-        }
+        <div class="invalid-feedback">El usuario es requerido</div>
       </div>
 
-      <div class="form-group">
-        <label for="clave">Contraseña</label>
+      <div class="mb-4">
+        <label class="form-label fw-semibold" for="clave">
+          <i class="bi bi-lock me-1"></i>Contraseña
+        </label>
         <input
           id="clave"
           type="password"
+          class="form-control form-control-lg"
           formControlName="clave"
-          placeholder="Ingrese su contraseña"
-          [class.field-error]="form.get('clave')?.invalid && form.get('clave')?.touched"
+          placeholder="Ingresa tu contraseña"
+          [class.is-invalid]="form.get('clave')?.invalid && form.get('clave')?.touched"
+          autocomplete="current-password"
         />
-        @if (form.get('clave')?.hasError('required') && form.get('clave')?.touched) {
-          <span class="error-text">La contraseña es requerida</span>
-        }
+        <div class="invalid-feedback">La contraseña es requerida</div>
       </div>
 
       @if (errorMsg) {
-        <div class="alert-error">{{ errorMsg }}</div>
+        <div class="alert alert-danger d-flex align-items-center gap-2 py-2" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span>{{ errorMsg }}</span>
+        </div>
       }
 
-      <button type="submit" class="btn-submit" [disabled]="loading">
-        {{ loading ? 'Ingresando...' : 'Ingresar' }}
+      <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="loading">
+        @if (loading) {
+          <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+          Ingresando...
+        } @else {
+          <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+        }
       </button>
+
     </form>
   </div>
 </div>
